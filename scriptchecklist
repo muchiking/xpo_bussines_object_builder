@@ -1,0 +1,17 @@
+get template recreate templates
+
+ private string _firstName;
+        public string FirstName
+        {
+            get { return _firstName; }
+            set { SetPropertyValue(nameof(FirstName), ref _firstName, value); }
+    
+        }
+
+     """private string {variablename};
+        public string {functioname}
+        {
+            get { return  {variablename}; }
+            set { SetPropertyValue(nameof( {functioname}), ref {variablename}, value); }
+    
+        }"""

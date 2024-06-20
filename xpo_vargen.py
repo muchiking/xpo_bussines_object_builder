@@ -33,63 +33,74 @@ def print_entries_in_both_cases(arr):
 
 if __name__ == "__main__":
     my_array =   [
-    "AssetName",
-    "GivingCondition",
-    "ReturnCondition"
+    "FirstName",
+    "MiddleName",
+    "LastName",
+    "IdNo",
+    "PhoneNumber",
+    "EmailAddress",
+    "Location",
+    "Age",
+    "DateRegistered",
+    "IsDiscipled",
+    "MaritalStatus",
+    "IsBaptized",
+    "IsNewBeliever",
+    "Status"
 ]
     vars = print_entries_in_both_cases(my_array)
     # print(vars)
-    classname="AssetManagment"
-    project="HRM"
+    classname="Members"
+    project="IfcSystem"
 
 
     basefile=f'''
-    using DevExpress.CodeParser;
-    using DevExpress.Data.Filtering;
-    using DevExpress.ExpressApp;
-    using DevExpress.ExpressApp.DC;
-    using DevExpress.ExpressApp.Model;
-    using DevExpress.Persistent.Base;
-    using DevExpress.Persistent.BaseImpl;
-    using DevExpress.Persistent.Validation;
-    using DevExpress.Xpo;
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Text;
-    using System.Globalization;
+using DevExpress.CodeParser;
+using DevExpress.Data.Filtering;
+using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.DC;
+using DevExpress.ExpressApp.Model;
+using DevExpress.Persistent.Base;
+using DevExpress.Persistent.BaseImpl;
+using DevExpress.Persistent.Validation;
+using DevExpress.Xpo;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Globalization;
 
-    namespace { project}.Module.BusinessObjects
-    {{
-        [DefaultClassOptions]
-    
+namespace { project}.Module.BusinessObjects
+{{
+    [DefaultClassOptions]
+  //[XafDisplayName("Company Information")]
+  //[ImageName("BO_Address")]
         
-        public class {classname} : XPLiteObject
-        {{ 
-            //[FieldSize(FieldSizeAttribute.Unlimited)]
-            public {classname}(Session session)
-                : base(session)
-            {{
-            }} 
-                    int oid;
-      [Key(AutoGenerate = true), Browsable(false)]
+    public class {classname} : XPLiteObject
+    {{ 
+        //[FieldSize(FieldSizeAttribute.Unlimited)]
+        public {classname}(Session session)
+            : base(session)
+        {{
+        }} 
+        int oid;
+        [Key(AutoGenerate = true), Browsable(false)]
         public int Oid
-       {{
+        {{
             get => oid;
             set => SetPropertyValue(nameof(Oid), ref oid, value);
+        }}    
+        {vars}
+      //public DateTime Date {{get; set;}}
+        public override void AfterConstruction()
+        {{
+            base.AfterConstruction();
+   
         }}
-
-            
-            {vars}
-            public override void AfterConstruction()
-            {{
-                base.AfterConstruction();
-    
-            }}
-            //public DateTime Date {{get; set;}}
-        }}
-    }}'''
+      
+    }}
+}}'''
     save="built/"+classname+".cs"
     f=open(save,"w+")
     f.write(basefile)

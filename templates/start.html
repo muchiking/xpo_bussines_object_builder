@@ -1,9 +1,51 @@
 {% extends 'base.html' %}
 {% block body %}
-<pre>
-  <code>
+<div class="container mt-5">
+<form action="/start" method="POST">
+  <div class="form-group">
+
+    <label for="exampleInputEmail1">Enter input types</Input> </label>
+    <select class="form-control " name="vartypes">
+      <option>Int</option>
+      <option>String</option>
+      <option>Bool</option>
+      <option>Double</option>
+      <option>Date</option>
+
+    </select>
+    <label for="exampleInputEmail1">Enter Variable Names </label>
+    <input type="text" name="variable" class="form-control" id="variables" aria-describedby="variables">
+    <small id="emailHelp" class="form-text text-muted">Enter variable names separated with commas </small>
+    </div>
+    <div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+  </div>
+</form>
+<div class="container ">
+  <div class="position-relative">
+      <pre class="code-box">
+  <code class="language-c#" data-highlighted="yes" >
       {{mycode}}
+
  
-  </code>
+    </code>
   </pre>
+  <button class="btn btn-primary copy-button" onclick="copyToClipboard()">Copy</button>
+</div>
+</div>
+
+<script>
+function copyToClipboard() {
+  const codeBox = document.querySelector('.code-box code');
+  const range = document.createRange();
+  range.selectNodeContents(codeBox);
+  const selection = window.getSelection();
+  selection.removeAllRanges();
+  selection.addRange(range);
+  document.execCommand('copy');
+  // alert('Code copied to clipboard!');
+}
+</script>
 {% endblock %}
+

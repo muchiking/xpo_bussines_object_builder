@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start</title>
+    <style>
+        .code-box {
+            position: relative;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 0.25rem;
+            background-color: #f8f9fa;
+            overflow: auto;
+            max-height: 300px;
+        }
+        .copy-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST" action="/start">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <br>
+        <label for="age">Age:</label>
+        <input type="text" id="age" name="age">
+        <br>
+        <label for="exampleInputEmail1">Enter input types</Input> </label>
+    <select class="form-control " name="vartypes">
+      <option>Int</option>
+      <option>String</option>
+      <option>Bool</option>
+      <option>Double</option>
+    </select>
+    <label for="exampleInputEmail1">Enter Variable Names </label>
+    <input type="text" name="variable" class="form-control" id="variables" aria-describedby="variables">
+    <small id="emailHelp" class="form-text text-muted">Enter variable names separated with commas </small>
+        <input type="submit" value="Submit">
+    </form>
+    <p>{{ test }}</p>
+    <div class="container mt-5">
+    <div class="position-relative">
+    <pre class="code-box">
+    <code>
+ {{ mycode }}
+
+</code>
+</pre>
+<button class="btn btn-primary copy-button" onclick="copyToClipboard()">Copy</button>
+</div>
+</div>
+
+    <script>
+        function copyToClipboard() {
+            const codeBox = document.querySelector('.code-box code');
+            const range = document.createRange();
+            range.selectNodeContents(codeBox);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            document.execCommand('copy');
+            alert('Code copied to clipboard!');
+        }
+    </script>
+</body>
+</html>

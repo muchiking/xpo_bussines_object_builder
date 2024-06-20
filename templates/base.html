@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/prism.css') }}">
-    <title>Builder</title>
+    <title>.NET Objects Builder</title>
 
     <style>
         .code-box {
@@ -16,7 +16,7 @@
             padding: 1rem;
             border: 1px solid #ddd;
             border-radius: 0.25rem;
-            background-color: #f8f9fa;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
             overflow: auto;
             max-height: 300px;
         }
@@ -37,18 +37,14 @@
             <div class="navbar-nav">
               <!-- <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a> -->
               <a class="nav-link" href="{{ url_for('start') }}">Home</a>
-              <a class="nav-link" href="#">Pricing</a>
-              <a class="nav-link disabled">Disabled</a>
+              <a class="nav-link" href="{{ url_for('pricing')}}">Pricing</a>
+              <a class="nav-link" href="https://dotnet.microsoft.com/en-us/learn/dotnet/what-is-dotnet">About .NET </a>
             </div>
           </div>
       </nav>
 
       <div class="jumbotron">
-        <h1 class="display-4">build objects</h1>
-        <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
-        <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+        <h1 class="display-4">Build .NET Objects</h1>
       </div>
 
     </div>

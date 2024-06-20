@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block body %}
 <div class="container mt-5">
-<form action="/start" method="POST">
+<form action="/" method="POST">
   <div class="form-group">
 
-    <label for="exampleInputEmail1">Enter input types</Input> </label>
+    <label for="exampleInputEmail1">Enter input types</label>
     <select class="form-control " name="vartypes">
       <option>Int</option>
       <option>String</option>
@@ -14,7 +14,7 @@
 
     </select>
     <label for="exampleInputEmail1">Enter Variable Names </label>
-    <input type="text" name="variable" class="form-control" id="variables" aria-describedby="variables">
+    <input type="text" name="variable" class="form-control" id="variables" aria-describedby="variables" required>
     <small id="emailHelp" class="form-text text-muted">Enter variable names separated with commas </small>
     </div>
     <div>

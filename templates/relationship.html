@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container mt-5">
+<form action="/relationship" method="POST">
+  <div class="form-group">
+
+    <label for="exampleInputEmail1">Enter main class  </label>
+    <input type="text" name="main" class="form-control" id="main" aria-describedby="main" required>
+    <label for="exampleInputEmail1">Enter the dependant classes  </label>
+    <input type="text" name="dependant" class="form-control" id="dependant" aria-describedby="dependant" required>
+    <small id="emailHelp" class="form-text text-muted">Enter variable names separated with commas </small>
+    </div>
+    <div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+  </div>
+</form>
+<div class="container ">
+  <div class="position-relative">
+      <pre class="code-box">
+  <code class="language-c#" data-highlighted="yes" >
+      {{mycode}}
+
+ 
+    </code>
+  </pre>
+  <button class="btn btn-primary copy-button" onclick="copyToClipboard()">Copy</button>
+</div>
+</div>
+
+<script>
+function copyToClipboard() {
+  const codeBox = document.querySelector('.code-box code');
+  const range = document.createRange();
+  range.selectNodeContents(codeBox);
+  const selection = window.getSelection();
+  selection.removeAllRanges();
+  selection.addRange(range);
+  document.execCommand('copy');
+  // alert('Code copied to clipboard!');
+}
+</script>
+{% endblock %}
+

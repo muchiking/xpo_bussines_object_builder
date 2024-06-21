@@ -48,6 +48,18 @@ def start():
 def pricing():
     return render_template('pricing.html')
 
+@app.route('/relationship',methods=["GET","POST"])
+def relationship():
+      mycode=''
+      if request.method == 'POST':
+            dependant= request.form.get("dependant")
+            main = request.form.get("main")
+            # print(main,dependant)
+            mycode=print_entries_in_both_cases1(dependant,main)
+      return render_template('relationship.html',mycode=mycode)
+      
+
+
 if __name__ == '__main__':
    
    app.run(debug = True)

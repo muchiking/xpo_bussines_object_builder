@@ -1,3 +1,5 @@
+import random
+
 def format_word(word):
     formatted_word = "_" + word[0].upper() + word[1:]
 
@@ -137,6 +139,7 @@ def print_entries_in_both_cases1(shared,master):
     sharedsmall=(format_word(slave))
     _masterclass=(format_word(masterclass))
     #functionname=entry
+    new=str(random.randint(0000,9999))
     list= f'''
     private {slave} {sharedsmall};
     [Association("{slave}-{masterclass}")]
@@ -148,7 +151,7 @@ def print_entries_in_both_cases1(shared,master):
     //paste in slave class
     
     [Association("{slave}-{masterclass}")]
-    public XPCollection<{masterclass}>{_masterclass} => GetCollection<{masterclass}>(nameof({_masterclass}));'''
+    public XPCollection<{masterclass}>{_masterclass}_{new} => GetCollection<{masterclass}>(nameof({_masterclass}_{new}));'''
     string+=list
 
     return (string)

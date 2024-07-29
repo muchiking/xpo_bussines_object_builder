@@ -93,6 +93,7 @@ namespace { project}.Module.BusinessObjects
 
         private string _created_by;
         [XafDisplayName("Created By")]
+        [ModelDefault("AllowEdit", "false")]
         //[VisibleInDetailView(false)]
         [VisibleInListView(false)]
         [VisibleInLookupListView(false)]
@@ -103,6 +104,7 @@ namespace { project}.Module.BusinessObjects
         }}
         private DateTime _created_on;
         [XafDisplayName("Created On")]
+        [ModelDefault("AllowEdit", "false")]
         [ModelDefault("DisplayFormat", "{{0: dd-MMM-yyyy}}")]
         [ModelDefault("EditMask", "dd-MMM-yyyy")]
         //[VisibleInDetailView(false)]
@@ -115,6 +117,7 @@ namespace { project}.Module.BusinessObjects
         }}
         private string _altered_by;
         [XafDisplayName("Altered By")]
+        [ModelDefault("AllowEdit", "false")]
         //[VisibleInDetailView(false)]
         [VisibleInListView(false)]
         [VisibleInLookupListView(false)]
@@ -125,6 +128,7 @@ namespace { project}.Module.BusinessObjects
         }}
         private DateTime _date_altered;
         [XafDisplayName("Altered On")]
+        [ModelDefault("AllowEdit", "false")]
         [ModelDefault("DisplayFormat", "{{0: dd-MMM-yyyy}}")]
         [ModelDefault("EditMask", "dd-MMM-yyyy")]
         //[VisibleInDetailView(false)]

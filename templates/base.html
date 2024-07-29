@@ -1,70 +1,94 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/prism.css') }}">
-    <title>.NET Objects Builder</title>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <style>
-        .code-box {
-            position: relative;
-            padding: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 0.25rem;
-            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-            overflow: auto;
-            max-height: 300px;
-        }
-        .copy-button {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-        }
-    </style>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/prism.css') }}">
+  <title>.NET Objects Builder</title>
 
-  </head>
-  <body>
-    <div class="container mt-5">
+  <style>
+    .code-box {
+      position: relative;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 0.25rem;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      overflow: auto;
+      max-height: 300px;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="container mt-5">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <!-- Navbar content -->
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <!-- <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a> -->
-              <a class="nav-link" href="{{ url_for('start') }}">Home</a>
-              <a class="nav-link" href="{{ url_for('pricing')}}">Pricing</a>
-              <a class="nav-link" href="https://dotnet.microsoft.com/en-us/learn/dotnet/what-is-dotnet">About .NET </a>
-            </div>
-          </div>
-      </nav>
-
-      <div class="jumbotron">
-        <h1 class="display-4">Build .NET Objects</h1>
+      <!-- Navbar content -->
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <!-- <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a> -->
+          <a class="nav-link" href="{{ url_for('start') }}">Home</a>
+          <a class="nav-link" href="{{ url_for('relationship') }}">CreateRelationships</a>
+          <!--  <a class="nav-link" href="{{ url_for('pricing')}}">Pricing</a> -->
+          <a class="nav-link" href="https://dotnet.microsoft.com/en-us/learn/dotnet/what-is-dotnet">About .NET </a>
+        </div>
       </div>
+    </nav>
 
+    <div class="jumbotron">
+      <h1 class="display-4">Build .NET Objects</h1>
     </div>
- 
-   
-    {% block body %}
- 
- 
- 
 
- 
- 
-{% endblock %}
-  
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-    <script src="{{ url_for('static', filename='js/prism.js') }}"></script>
+
+  {% block body %}
 
 
 
-  </body>
+
+
+
+  {% endblock %}
+
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    crossorigin="anonymous"></script>
+  <script src="{{ url_for('static', filename='js/prism.js') }}"></script>
+
+
+
+</body>
+<div class ="pt-5 text-center " style="color:black;">
+  <div>
+    <p>
+    
+        <!-- <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a> -->
+        <a class="p-2" style="text-decoration: none;" href="{{ url_for('start') }}">Home</a>
+        <a class="p-2" style="text-decoration: none;" href="{{ url_for('relationship') }}">CreateRelationships</a>
+        <!--  <a class="nav-link" href="{{ url_for('pricing')}}">Pricing</a> -->
+        <a class="p-2" style="text-decoration: none;" href="https://dotnet.microsoft.com/en-us/learn/dotnet/what-is-dotnet">About .NET </a>
+      
+
+    </p>
+  </div>
+</div>
+
 </html>

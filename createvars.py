@@ -1,3 +1,5 @@
+import random
+
 def format_word(word):
     formatted_word = "_" + word[0].upper() + word[1:]
 
@@ -93,5 +95,63 @@ def createdouble(arr):
     
         }}"""
         string+=list
+
+    return (string)
+
+def format_word(word):
+    formatted_word = "_" + word[0].upper() + word[1:]
+
+    return formatted_word
+
+def print_entries_in_both_cases(shared,master):
+    string=" "
+    for i in range(0,len(shared)):
+        slave=shared[i]
+        masterclass=master[i]
+        #print(f"Uppercase: {entry.upper()}, Lowercase: {entry.lower()}")
+        sharedsmall=(format_word(slave))
+        _masterclass=(format_word(masterclass))
+        #functionname=entry
+        list= f'''
+        private {slave} {sharedsmall};
+       [Association("{slave}-{masterclass}")]
+        public {slave} {slave}
+        {{
+            get =>{sharedsmall};
+            set => SetPropertyValue(nameof({slave}), ref {sharedsmall}, value);
+        }}
+        //paste in slave class
+        
+       [Association("{slave}-{masterclass}")]
+        public XPCollection<{masterclass}>{_masterclass} => GetCollection<{masterclass}>(nameof({_masterclass}));'''
+        string+=list
+
+    return (string)
+
+def print_entries_in_both_cases1(shared,master):
+    string=" "
+    slave=shared
+    masterclass=master
+    # for i in range(0,len(shared)):
+    #     slave=shared[i]
+    #     masterclass=master[i]
+    #     #print(f"Uppercase: {entry.upper()}, Lowercase: {entry.lower()}")
+    sharedsmall=(format_word(slave))
+    _masterclass=(format_word(masterclass))
+    #functionname=entry
+    new=str(random.randint(0000,9999))
+    list= f'''
+    private {slave} {sharedsmall};
+    [Association("{slave}-{masterclass}")]
+    public {slave} {slave}
+    {{
+        get =>{sharedsmall};
+        set => SetPropertyValue(nameof({slave}), ref {sharedsmall}, value);
+    }}
+    //paste in slave class
+    
+    [Association("{slave}-{masterclass}")]
+    public XPCollection<{masterclass}>{_masterclass}_{new} => GetCollection<{masterclass}>(nameof({_masterclass}_{new}));'''
+    string+=list
 
     return (string)

@@ -6,7 +6,7 @@ import os
     
 
 def format_word(word):
-    formatted_word = "_" + word[0].upper() + word[1:]
+    formatted_word = "_" + word[0].lower() + word[1:]
 
     return formatted_word
 
@@ -18,12 +18,20 @@ def print_entries_in_both_cases(arr):
         functionname=entry
         list= f"""
         private string {variablename};
+        [XafDisplayName("{entry}")]
+        //[RuleRequiredField("", DefaultContexts.Save, "{entry} Is Mandatory Please Specify !")]
+        //[Appearance("", Visibility = ViewItemVisibility.Hide, Criteria = "!IsNullOrEmpty(client_type) && ![client_type.isIndividual]")]
+        //[VisibleInDetailView(false)]
+        //[VisibleInListView(false)]
+        //[VisibleInLookupListView(false)]  
+        //[ImmediatePostData()]      
         public string {entry}
         {{
             get {{ return  {variablename}; }}
-            set {{ SetPropertyValue(nameof( {entry}), ref {variablename}, value); }}
+            set {{ SetPropertyValue(nameof({entry}), ref {variablename}, value); }}
     
-        }}"""
+        }}
+        """
         string+=list
 
     return (string)
@@ -33,25 +41,14 @@ def print_entries_in_both_cases(arr):
 
 if __name__ == "__main__":
     my_array =   [
-    "FirstName",
-    "MiddleName",
-    "LastName",
-    "IdNo",
-    "PhoneNumber",
-    "EmailAddress",
-    "Location",
-    "Age",
-    "DateRegistered",
-    "IsDiscipled",
-    "MaritalStatus",
-    "IsBaptized",
-    "IsNewBeliever",
-    "Status"
+    "TeamName",
+    "Code",
+    "IsActive"         
 ]
     vars = print_entries_in_both_cases(my_array)
     # print(vars)
-    classname="Members"
-    project="IfcSystem"
+    classname="Teams"
+    project="IFSys"
 
 
     basefile=f'''
@@ -76,6 +73,7 @@ namespace { project}.Module.BusinessObjects
     [DefaultClassOptions]
   //[XafDisplayName("Company Information")]
   //[ImageName("BO_Address")]
+  //[Appearance("lockDetails  information", TargetItems = "*;LockDetails", Criteria = "LockDetails = 'True'", Enabled = false)]
         
     public class {classname} : XPLiteObject
     {{ 
@@ -90,14 +88,82 @@ namespace { project}.Module.BusinessObjects
         {{
             get => oid;
             set => SetPropertyValue(nameof(Oid), ref oid, value);
-        }}    
+        }}  
         {vars}
-      //public DateTime Date {{get; set;}}
+
+        private string _created_by;
+        [XafDisplayName("Created By")]
+        [ModelDefault("AllowEdit", "false")]
+        //[VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        [VisibleInLookupListView(false)]
+        public string created_by
+        {{
+            get {{  return _created_by; }}
+            set {{ SetPropertyValue<string>(nameof(created_by), ref _created_by, value); }}
+        }}
+        private DateTime _created_on;
+        [XafDisplayName("Created On")]
+        [ModelDefault("AllowEdit", "false")]
+        [ModelDefault("DisplayFormat", "{{0: dd-MMM-yyyy}}")]
+        [ModelDefault("EditMask", "dd-MMM-yyyy")]
+        //[VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        [VisibleInLookupListView(false)]
+        public DateTime created_on
+        {{
+            get {{ return _created_on; }}
+            set {{ SetPropertyValue<DateTime>(nameof(created_on), ref _created_on, value); }}
+        }}
+        private string _altered_by;
+        [XafDisplayName("Altered By")]
+        [ModelDefault("AllowEdit", "false")]
+        //[VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        [VisibleInLookupListView(false)]
+        public string altered_by
+        {{
+            get {{  return _altered_by; }}
+            set {{ SetPropertyValue<string>(nameof(altered_by), ref _altered_by, value); }}
+        }}
+        private DateTime _date_altered;
+        [XafDisplayName("Altered On")]
+        [ModelDefault("AllowEdit", "false")]
+        [ModelDefault("DisplayFormat", "{{0: dd-MMM-yyyy}}")]
+        [ModelDefault("EditMask", "dd-MMM-yyyy")]
+        //[VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        [VisibleInLookupListView(false)]
+        public DateTime date_altered
+        {{
+            get {{ return _date_altered; }}
+            set {{ SetPropertyValue<DateTime>(nameof(date_altered), ref _date_altered, value); }}
+        }}
+        //public DateTime Date {{get; set;}}
+
+        protected override void OnSaving()
+        {{
+            base.OnSaving();
+
+            if (Session.IsNewObject(this))
+            {{
+                created_by = SecuritySystem.CurrentUserName; 
+                created_on = DateTime.Now;
+            }}
+            else
+            {{
+                date_altered = DateTime.Now;
+                //altered_by = SystemMessaging.CleanString(SecuritySystem.CurrentUserName);
+                altered_by = SecuritySystem.CurrentUserName;
+            }}
+        }}
+
         public override void AfterConstruction()
         {{
             base.AfterConstruction();
    
         }}
+
       
     }}
 }}'''

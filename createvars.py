@@ -67,13 +67,8 @@ def createdate(arr):
         variablename=(format_word(entry))
         functionname=entry
         list= f"""
-        private bool {variablename};
-        public bool {entry}
-        {{
-            get {{ return  {variablename}; }}
-            set {{ SetPropertyValue(nameof( {entry}), ref {variablename}, value); }}
-    
-        }}"""
+        public DateTime {entry} {{get; set;}}
+       """
         string+=list
 
     return (string)

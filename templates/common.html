@@ -1,14 +1,11 @@
 {% extends 'base.html' %}
 {% block body %}
 <div class="container mt-5">
-<form action="/relationship" method="POST">
+<form action="/commonclass" method="POST">
   <div class="form-group">
 
-    <label for="exampleInputEmail1">Enter the class you want to create objects for </label>
-    <input type="text" name="main" class="form-control" id="main" aria-describedby="main" required>
-    <label for="exampleInputEmail1">Enter the class that has required fields   </label>
-    <input type="text" name="dependant" class="form-control" id="dependant" aria-describedby="dependant" required>
-    <small id="emailHelp" class="form-text text-muted">Enter variable names separated with commas </small>
+    <label for="exampleInputEmail1">Enter the modulename you want to create the common class for  </label>
+    <input type="text" name="class" class="form-control" id="main" aria-describedby="main" required>
     </div>
     <div>
     <button type="submit" class="btn btn-primary">Submit</button>

@@ -73,6 +73,27 @@ def createdate(arr):
 
     return (string)
 
+ 
+def createxpliteobj(arr):
+    string=" "
+    for entry in arr:
+        #print(f"Uppercase: {entry.upper()}, Lowercase: {entry.lower()}")
+        variablename=(format_word(entry))
+        functionname=entry
+        list= f"""
+        int {variablename};
+        [Key(AutoGenerate = true), Browsable(false)]
+        public int {entry}
+        {{
+            get {{ return  {variablename}; }}
+            set {{ SetPropertyValue(nameof( {entry}), ref {variablename}, value); }}
+    
+        }}"""
+        string+=list
+
+    return (string)
+
+
 
 
 def createdouble(arr):
@@ -92,6 +113,11 @@ def createdouble(arr):
         string+=list
 
     return (string)
+
+def format_word1(word):
+    formatted_word =  word[0].upper() + word[1:]
+
+    return formatted_word
 
 def format_word(word):
     formatted_word = "_" + word[0].upper() + word[1:]
@@ -132,7 +158,7 @@ def print_entries_in_both_cases1(shared,master):
     #     masterclass=master[i]
     #     #print(f"Uppercase: {entry.upper()}, Lowercase: {entry.lower()}")
     sharedsmall=(format_word(slave))
-    _masterclass=(format_word(masterclass))
+    _masterclass=(format_word1(masterclass))
     #functionname=entry
     new=str(random.randint(0000,9999))
     list= f'''
@@ -143,7 +169,7 @@ def print_entries_in_both_cases1(shared,master):
         get =>{sharedsmall};
         set => SetPropertyValue(nameof({slave}), ref {sharedsmall}, value);
     }}
-    //paste in slave class
+    //paste in slave {slave}
     
     [Association("{slave}-{masterclass}")]
     public XPCollection<{masterclass}>{_masterclass}_{new} => GetCollection<{masterclass}>(nameof({_masterclass}_{new}));'''

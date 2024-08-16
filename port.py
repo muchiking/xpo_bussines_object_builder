@@ -2,6 +2,7 @@
 from flask import Flask, request, render_template
 from pathlib import Path
 from createvars import * 
+import commonclass
 home= Path().absolute()
 
 app = Flask(__name__)
@@ -14,7 +15,6 @@ def start():
         if request.method == 'POST':
             print('started route')
             mycode='ff'
-
             vartype= request.form.get("vartypes")
             variable = request.form.get("variable")
 
@@ -36,12 +36,12 @@ def start():
             elif vartype == 'Date':
                 result=createdate(variable)
                 mycode= result
-            
-
+            elif vartype == 'XPlite_ObjectID':
+                result=createxpliteobj(variable)
+                mycode= result
             for key, value in request.form.items():
                 print(f'{key}: {value}')
                 errors += f'{key}: {value}\n'
-
         return render_template('start.html',test='h1',mycode= mycode,errors=errors)
 
 @app.route('/pricing',methods=["GET","POST"])
@@ -57,6 +57,16 @@ def relationship():
             # print(main,dependant)
             mycode=print_entries_in_both_cases1(dependant,main)
       return render_template('relationship.html',mycode=mycode)
+
+@app.route('/commonclass',methods=["GET","POST"])
+def common():
+      mycode=''
+      if request.method == 'POST':
+            defaultclass= request.form.get("class")
+            # main = request.form.get("main")
+            # print(main,dependant)
+            mycode=commonclass.createclass(defaultclass)
+      return render_template('common.html',mycode=mycode)
       
 @app.route('/append',methods=["GET","POST"])
 def append():
@@ -90,6 +100,9 @@ def append():
         elif vartype == 'Date':
             result=createdate(variable)
             mycode= result
+        elif vartype == 'XPlite_ObjectID':
+                result=createxpliteobj(variable)
+                mycode= result
             
 
             # for key, value in request.form.items():

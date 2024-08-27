@@ -3,9 +3,14 @@
 <div class="container mt-5">
 <form action="/commonclass" method="POST">
   <div class="form-group">
+    <label for="exampleInputEmail1">Enter input types</label>
+    <select class="form-control " name="vartypes">
+      <option>project</option>
+      <option>git-ignore</option>
+    </select>
 
-    <label for="exampleInputEmail1">Enter the modulename you want to create the common class for  </label>
-    <input type="text" name="class" class="form-control" id="main" aria-describedby="main" required>
+    <label for="exampleInputEmail1">Enter the project name you want to create the common class for or leave blank for git ignore file  </label>
+    <input type="text" name="class" class="form-control" id="main" aria-describedby="main" >
     </div>
     <div>
     <button type="submit" class="btn btn-primary">Submit</button>

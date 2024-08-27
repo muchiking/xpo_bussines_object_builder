@@ -61,11 +61,15 @@ def relationship():
 @app.route('/commonclass',methods=["GET","POST"])
 def common():
       mycode=''
-      if request.method == 'POST':
-            defaultclass= request.form.get("class")
+      if request.method == 'POST':    
             # main = request.form.get("main")
             # print(main,dependant)
-            mycode=commonclass.createclass(defaultclass)
+            vartype= request.form.get("vartypes")
+            if vartype == 'git-ignore':
+                 mycode = commonclass.printgit()
+            elif vartype == 'project':
+                defaultclass= request.form.get("class")
+                mycode=commonclass.createclass(defaultclass)
       return render_template('common.html',mycode=mycode)
       
 @app.route('/append',methods=["GET","POST"])
